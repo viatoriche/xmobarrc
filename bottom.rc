@@ -1,0 +1,20 @@
+Config { font = "xft:Terminus-12"
+       , bgColor = "#222222"
+       , fgColor = "#969894"
+       , position = Bottom
+       , lowerOnStart = True
+       , commands = [ Run Com "moc_title.sh" [] "MOC" 10
+                    , Run Com "getvol" [] "VOL" 10
+                    , Run Weather "ULAA" ["-t","<tempC>°C","-L","0","-H","20","--normal","green","--high","red","--low","lightblue"] 300
+                    , Run Date "<fc=#619fcf>%a %b %d %k:%M</fc>" "date" 100
+                    , Run Battery [] 30
+                    , Run Memory ["-t","M:<usedratio>%"] 20
+                    , Run Com "/home/viator/bin/gettkabber" [] "tkabber" 20
+                    , Run Com "skb" ["-i"] "keyboard" 10
+                    , Run PipeReader "/home/viator/.xmonad/status.log" "log"
+                    , Run PipeReader "/home/viator/.xmobar/window.log" "window"
+                    ]
+       , sepChar = "%"
+       , alignSep = "}{"
+       , template = "<fc=#619fcf>%log% : %window%</fc> | <fc=#619fcf>%MOC% </fc> }{ <fc=#619fcf>%ULAA%</fc> | <fc=#619fcf>%memory%</fc> | <fc=#619fcf>%keyboard%</fc> | [<fc=#619fcf>%tkabber%</fc>] %date%"
+       }
